@@ -14,6 +14,11 @@
             this.renderList.add(displayable);
         }
 
+        public void clearRenderList() {
+            this.renderList.clear();
+        }
+
+
         @Override
         public void paint(Graphics g){
             super.paint(g);

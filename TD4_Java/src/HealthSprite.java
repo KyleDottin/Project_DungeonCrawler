@@ -7,17 +7,19 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class HealthSprite extends DynamicSprite{
-    protected final int spriteSheetNumberofColumn=3;
+    protected final int MaxHealth=3;
     protected int index=0;
+    protected DynamicSprite dynamicSprite;
 
-    public HealthSprite(BufferedImage image, double x, double y, double width, double height) {
+    public HealthSprite(BufferedImage image, double x, double y, double width, double height, DynamicSprite dynamicSprite) {
         super(image, x, y, width, height);
+        this.dynamicSprite = dynamicSprite;
     }
 
 
     @Override
     public void Draw(Graphics g) {
-        if (isGetHit()) {
+        if (dynamicSprite.getHit) {
             index += 1;
         }
 
@@ -31,7 +33,7 @@ public class HealthSprite extends DynamicSprite{
         g.drawImage(image, (int) x/8, (int) y/8, (int) (x + width)/8, (int) (y + height)/8,
                 width1, height1, width2, height2, null);
 
-        if (index==spriteSheetNumberofColumn-1) {
+        if (index==MaxHealth-1) {
             index=0;
         }
     }

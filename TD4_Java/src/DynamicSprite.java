@@ -9,7 +9,8 @@ class DynamicSprite extends SolidSprite{
     protected final int spriteSheetNumberofColumn=10;
     protected int timeBetweenFrame=50;
     protected Direction direction=Direction.SOUTH;
-    protected boolean getHit=false;
+    protected boolean getHit;
+    protected boolean mapChangeTriggered;
 
     public DynamicSprite(BufferedImage image, double x, double y, double width, double height) {
         super(image, x, y, width, height);
@@ -17,10 +18,6 @@ class DynamicSprite extends SolidSprite{
 
     public void setDirection(Direction direction) {
         this.direction = direction;
-    }
-
-    public void resetHit(){
-        getHit=false;
     }
 
     @Override
@@ -83,13 +80,39 @@ class DynamicSprite extends SolidSprite{
         };
         return hitbox;
     }
+
+    void checkMap(ArrayList<DoorSprite> doorSprite) {
+        Rectangle2D.Double hitbox = Hitbox();
+        for (DoorSprite E : doorSprite) {
+            Rectangle2D.Double elementHitBox = new Rectangle2D.Double(
+                    E.x, E.y, E.width, E.height);
+            if (hitbox.intersects(elementHitBox)) {
+                mapChangeTriggered=true;
+                return;
+            }
+        }
+        mapChangeTriggered=false;
+    }
+
+    void checkIfHit(ArrayList<TrapSprite> trapSprite) {
+        Rectangle2D.Double hitbox = Hitbox();
+        for (TrapSprite E : trapSprite) {
+            Rectangle2D.Double elementHitBox = new Rectangle2D.Double(
+                    E.x, E.y, E.width, E.height);
+            if (hitbox.intersects(elementHitBox)) {
+                getHit=true;
+                return;
+            }
+        }
+        getHit=false;
+    }
+
     public boolean isMovingPossible(ArrayList<Sprite> environment){
         Rectangle2D.Double hitbox=Hitbox();
         for (Sprite E : environment){
             if (E instanceof SolidSprite && E != this){
                 Rectangle2D.Double elementHitBox = new Rectangle2D.Double(
                         E.x+5, E.y, E.width-10, E.height-5);
-
                 if (hitbox.intersects(elementHitBox)) {
                     return false;
                 }
@@ -108,22 +131,4 @@ class DynamicSprite extends SolidSprite{
         isWalking=true;
     }
 
-    void checkIfHit(ArrayList<HealthSprite> healthSprite) {
-        Rectangle2D.Double hitbox = Hitbox();
-        for (HealthSprite E : healthSprite) {
-            Rectangle2D.Double elementHitBox = new Rectangle2D.Double(
-                    E.x, E.y, E.width, E.height);
-            if (hitbox.intersects(elementHitBox)) {
-                System.out.println("Hit");
-                getHit=true;
-                break;
-            }
-        }
-        getHit=false;
-    }
-
-    public boolean isGetHit() {
-        System.out.println(getHit);
-        return getHit;
-    }
 }

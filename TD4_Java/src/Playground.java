@@ -8,8 +8,10 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class Playground {
-    private ArrayList<Sprite> environment = new ArrayList<>();
-    private ArrayList<HealthSprite> DecreaseHealth= new ArrayList<>();
+    protected ArrayList<Sprite> environment = new ArrayList<>();
+    protected ArrayList<TrapSprite> Damage= new ArrayList<>();
+    protected ArrayList<DoorSprite> Door= new ArrayList<>();
+
 
     public Playground(String pathName) {
         try {
@@ -47,8 +49,14 @@ public class Playground {
                         case 't':
                             environment.add(new Sprite(imageTrap, columnNumber * imageTrapWidth,
                                     lineNumber * imageTrapHeight, imageTrapWidth, imageTrapHeight));
-                            DecreaseHealth.add(new HealthSprite(imageTrap, columnNumber * imageTrapWidth,
+                            Damage.add(new TrapSprite(imageTrap, columnNumber * imageTrapWidth,
                                     lineNumber * imageTrapHeight, imageTrapWidth, imageTrapHeight));
+                            break;
+                        case '.':
+                            environment.add(new Sprite(imageGrass,columnNumber * imageGrassWidth,
+                                    lineNumber * imageGrassHeight, imageGrassWidth, imageGrassHeight, '.'));
+                            Door.add(new DoorSprite(imageGrass,columnNumber * imageGrassWidth,
+                                    lineNumber * imageGrassHeight, imageGrassWidth, imageGrassHeight));
                             break;
                     }
                     columnNumber++;
@@ -78,7 +86,13 @@ public class Playground {
         return displayableArrayList;
     }
 
-    public ArrayList<HealthSprite> getDecreaseHealth() {
-        return DecreaseHealth;
+    public ArrayList<TrapSprite> getDamageObject() {
+        return Damage;
     }
+
+    public ArrayList<DoorSprite> getDoorList() {
+        return Door;
+    }
+
+
 }

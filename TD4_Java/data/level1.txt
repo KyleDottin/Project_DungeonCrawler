@@ -2,7 +2,7 @@ TTTTTTTTT
 T       T
 T R     T
 T       T
-T        .
+T       .
 T       T
 T   t   T
 T       T
