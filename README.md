@@ -1,4 +1,5 @@
 Project game in Java made by Kyle DOTTIN
+
 Fonctionnalities:
 - Health Bar
 - Trap that deal damage
