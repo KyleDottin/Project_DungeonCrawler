@@ -1,0 +1,9 @@
+TTTTTTTTT
+T       T
+T       T
+T       T ./data/MazeMap.txt
+.       T x=460
+T       T y=263
+T       T
+T       T
+TTTTTTTTT

@@ -1,0 +1,23 @@
+lwww.wwwr
+{aaL~Kaa}
+{aaaaaaa}
+{aaa$qqqe ./data/CaveMap1.txt
+,aaa}VVVV x=460
+{aaa}VVVV y=263
+mqqqeVVVV ./data/OutsideHouseMap.txt
+VVVVVVVVV x=272
+VVVVVVVVV y=470
+
+
+
+
+
+
+
+
+
+
+
+          ./data/MazeMap.txt
+          x=192
+          y=470

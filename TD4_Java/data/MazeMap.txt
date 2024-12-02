@@ -1,0 +1,18 @@
+TTTT.TTTT ./data/BossMap.txt
+T TT TT T x=70
+T TT TT T y=263
+T TT RT T ./data/BeginningMap.txt
+. T     . x=460
+T TTTTT T y=263
+T  RTTT T ./data/FairyMap.txt
+T   T   T x=272
+TTT.TT.TT y=470
+
+
+
+          ./data/WindyMap.txt
+           x=263
+           y=70
+           ./data/OutsideHouseMap.txt
+           x=263
+           y=70

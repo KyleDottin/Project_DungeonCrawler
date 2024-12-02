@@ -1,0 +1,23 @@
+lwww.wwwr ./data/CaveMap2.txt
+{aaL~Kaa} x=70
+{aaaaaaa} y=263
+{aaaaaaa}
+{aaaaaaa,
+{aaaaaaa}
+mqqq*aaa} ./data/WindyMap.txt
+VVVV{aaa} x=272
+VVVVmqqqe y=470
+
+
+
+
+
+
+
+
+
+
+
+          ./data/MazeMap.txt
+          x=192
+          y=470

@@ -1,0 +1,26 @@
+TTTT.TTTT
+T       T
+T       T
+T       T
+T   R   T
+T       T
+T       T ./data/MazeMap.txt
+T       T x=416
+TTTT.TTTT y=470
+          ./data/CaveMap2.txt
+          x=263
+          y=70
+
+
+
+
+
+
+
+
+
+
+
+          ./data/MazeMap.txt
+          x=192
+          y=470
