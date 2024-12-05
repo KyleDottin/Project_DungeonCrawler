@@ -14,7 +14,7 @@ public class Playground {
     protected ArrayList<DoorSprite> Door = new ArrayList<>();
     protected ArrayList<CliffSprite> Cliff = new ArrayList<>();
 
-    public Playground(String pathName) {
+    public Playground(String pathName) { //Deals with the understanding of the txt file to build the levels
         try {
             // Load images
             final BufferedImage imageTree = ImageIO.read(new File("./img/tree.png"));
@@ -253,7 +253,7 @@ public class Playground {
         return levelPath;
     }
 
-    public ArrayList<Integer> NextPosition(String pathName, int beginLine) {
+    public ArrayList<Integer> NextPosition(String pathName, int beginLine) { //Check what is the next map
         ArrayList<Integer> Position = new ArrayList<>();
         String level = null;
 

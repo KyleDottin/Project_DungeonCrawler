@@ -2,7 +2,7 @@ import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
-public class PnjSprite extends DynamicSprite {
+public class PnjSprite extends DynamicSprite { //Deals with pnj sprite
     private String pathname;
     private DynamicSprite dynamicSprite;
 

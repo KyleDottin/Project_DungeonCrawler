@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-class DynamicSprite extends SolidSprite{
+class DynamicSprite extends SolidSprite{ //Deals with all the interactions with the character
     protected boolean isWalking;
     protected double speed=7;
     protected final int spriteSheetNumberofColumn=10;
@@ -28,6 +28,10 @@ class DynamicSprite extends SolidSprite{
     protected int lastDoory;
     protected boolean isWind;
     private Main main;
+    protected boolean isAttacking;
+    protected boolean damageMob;
+    protected boolean getFall;
+    protected boolean mobDead;
 
     public DynamicSprite(BufferedImage image, double x, double y, double width, double height) {
         super(image, x, y, width, height);
@@ -89,6 +93,15 @@ class DynamicSprite extends SolidSprite{
         Rectangle2D.Double hitbox = Hitbox();
         g.drawRect((int) hitbox.x, (int) hitbox.y,
                 (int) hitbox.width, (int) hitbox.height);
+
+        if (pnjDialogTrigger || fairyDialogTrigger) {
+            String Interact = "Interact";
+            int x_interact = 15;
+            int y_interact = 75;
+            g.setColor(Color.BLACK);
+            g.setFont(new Font("Microsoft PhagsPa", Font.BOLD, 12));
+            g.drawString(Interact, x_interact, y_interact);
+        }
     }
 
     private void move(){
@@ -136,7 +149,7 @@ class DynamicSprite extends SolidSprite{
         };
     }
 
-    void checkMap(ArrayList<DoorSprite> doorSprite) {
+    void checkMap(ArrayList<DoorSprite> doorSprite) { //Check if a door is touch
         Rectangle2D.Double hitbox = Hitbox();
         for (DoorSprite E : doorSprite) {
             Rectangle2D.Double elementHitBox = new Rectangle2D.Double(
@@ -151,7 +164,7 @@ class DynamicSprite extends SolidSprite{
         mapChangeTriggered=false;
     }
 
-    void checkIfHitTrap(ArrayList<TrapSprite> trapSprite) {
+    void checkIfHitTrap(ArrayList<TrapSprite> trapSprite) { //Check if a trap is touch
         Rectangle2D.Double hitbox = Hitbox();
         for (TrapSprite E : trapSprite) {
             Rectangle2D.Double elementHitBox = new Rectangle2D.Double(
@@ -166,7 +179,11 @@ class DynamicSprite extends SolidSprite{
         speed=7;
     }
 
-    void checkIfHitMob(ArrayList<MobSprite> mobSprite) {
+    void checkIfHitMob(ArrayList<MobSprite> mobSprite) { //Check if a mob is touch
+        if(mobDead){
+            getHitMob=false;
+            return; //Don't use check if hit if the mob is dead
+        }
         Rectangle2D.Double hitbox = Hitbox();
         for (MobSprite E : mobSprite) {
             Rectangle2D.Double elementHitBox = new Rectangle2D.Double(
@@ -179,7 +196,7 @@ class DynamicSprite extends SolidSprite{
         getHitMob=false;
     }
 
-    void checkIfFall(ArrayList<CliffSprite> cliffSprite) {
+    void checkIfFall(ArrayList<CliffSprite> cliffSprite) { //Check if a cliff is touch
         Rectangle2D.Double hitbox = Hitbox();
         for (CliffSprite E : cliffSprite) {
             Rectangle2D.Double elementHitBox = new Rectangle2D.Double(
@@ -189,14 +206,14 @@ class DynamicSprite extends SolidSprite{
                 xh=lastDoorx;
                 y=lastDoory;
                 yh=lastDoory;
-                getHit=true;
+                getFall=true;
                 return;
             }
         }
-        getHit=false;
+        getFall=false;
     }
 
-    void checkIfHitpnj(ArrayList<PnjSprite> pnjSprite) {
+    void checkIfHitpnj(ArrayList<PnjSprite> pnjSprite) { //Check if a pnj is touch
         if(main.path.equals("./data/BeginningMap.txt")){
         Rectangle2D.Double hitbox = Hitbox();
         for (PnjSprite E : pnjSprite) {
@@ -211,7 +228,7 @@ class DynamicSprite extends SolidSprite{
         pnjDialogTrigger=false;
     }
 
-    public boolean isMovingPossible(ArrayList<Sprite> environment){
+    public boolean isMovingPossible(ArrayList<Sprite> environment){ //Check if a solid sprite is touch
         Rectangle2D.Double hitbox=Hitbox();
         for (Sprite E : environment){
             if (E instanceof SolidSprite && E != this){
@@ -233,19 +250,23 @@ class DynamicSprite extends SolidSprite{
         return true;
     }
 
-    void isTalkingFairy(ArrayList<FairySprite> fairysprite){
+    void isTalkingFairy(ArrayList<FairySprite> fairysprite){ //Check if a fairy is touch
+        if(main.path.equals("./data/FairyMap.txt")){
         Rectangle2D.Double hitbox=Hitbox();
         for (Sprite E : fairysprite){
-            if (E instanceof SolidSprite && E != this){
+            if (E instanceof SolidSprite && E != this) {
                 Rectangle2D.Double elementHitBox = new Rectangle2D.Double(
-                        E.x*2, E.y*2, E.width*2, E.height*2);
+                        E.x * 2, E.y * 2, E.width * 2, E.height * 2);
                 if (hitbox.intersects(elementHitBox)) {
-                    fairyDialogTrigger=true;
+                    fairyDialogTrigger = true;
                     return;
                 }
             }
+
+            }
         }
         fairyDialogTrigger=false;
+
     }
 
 

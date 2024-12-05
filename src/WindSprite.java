@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class WindSprite extends DynamicSprite {
+public class WindSprite extends DynamicSprite { //class for the wind sprite
     private final String pathname;
     protected DynamicSprite dynamicSprite;
     private int timeBetweenFrame=100;

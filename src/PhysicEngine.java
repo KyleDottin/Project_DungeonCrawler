@@ -10,6 +10,7 @@ public class PhysicEngine implements Engine{
     private final ArrayList<MobSprite> mobSprite;
     private final ArrayList<CliffSprite> cliffSprite;
     private final ArrayList<PnjSprite> pnjSprite;
+    private final ArrayList<SwordSprite> swordSprite;
     private final Main main;
     protected boolean isPause;
     protected int beginLine;
@@ -18,7 +19,7 @@ public class PhysicEngine implements Engine{
         isPause=true;
     }
 
-    public PhysicEngine(Main main) {
+    public PhysicEngine(Main main) { //Deals with the Physic of the game
         movingSpriteList = new ArrayList<>();
         environment = new ArrayList<>();
         trapSprite = new ArrayList<>();
@@ -27,6 +28,7 @@ public class PhysicEngine implements Engine{
         mobSprite = new ArrayList<>();
         cliffSprite = new ArrayList<>();
         pnjSprite = new ArrayList<>();
+        swordSprite = new ArrayList<>();
         this.main = main;
     }
 
@@ -82,7 +84,13 @@ public class PhysicEngine implements Engine{
         }
     }
 
-    public void clearPhysicList(){
+    public void addToSwordSpriteList(SwordSprite sprite){
+        if (!swordSprite.contains(sprite)){
+            swordSprite.add(sprite);
+        }
+    }
+
+    public void clearPhysicList(){ //Clear the list for the new  level
         movingSpriteList.clear();
         trapSprite.clear();
         doorSprite.clear();
@@ -90,36 +98,31 @@ public class PhysicEngine implements Engine{
         cliffSprite.clear();
     }
 
-    public void setbeganLine(DynamicSprite dynamicSprite){
-        //Case if door is right
-        if (dynamicSprite.xd==512 && dynamicSprite.yd==256){
+    public void setbeganLine(DynamicSprite dynamicSprite){ //Method to read write lines based on the door taken
+        if (dynamicSprite.xd==512 && dynamicSprite.yd==256){//Case if door is right
             beginLine=0;
         }
-        //Case if door is left
-        if (dynamicSprite.xd==0 && dynamicSprite.yd==256){
+        if (dynamicSprite.xd==0 && dynamicSprite.yd==256){ //Case if door is left
             beginLine=3;
         }
-        //Case if door is up
-        if (dynamicSprite.xd==256 && dynamicSprite.yd==0){
+        if (dynamicSprite.xd==256 && dynamicSprite.yd==0){ //Case if door is up
             beginLine=6;
         }
-        //Case if door is down
-        if (dynamicSprite.xd==256 && dynamicSprite.yd==512){
+        if (dynamicSprite.xd==256 && dynamicSprite.yd==512){ //Case if door is down
             beginLine=9;
         }
-        if (dynamicSprite.xd==192 && dynamicSprite.yd==512){ //left bottom door
+        if (dynamicSprite.xd==192 && dynamicSprite.yd==512){ //Case if left bottom door
             beginLine=12;
         }
-        if (dynamicSprite.xd==384 && dynamicSprite.yd==512){ //right bottom door
+        if (dynamicSprite.xd==384 && dynamicSprite.yd==512){ //Case if right bottom door
             beginLine=15;
         }
-        if (dynamicSprite.xd==192 && dynamicSprite.yd==0){ //left upper door
+        if (dynamicSprite.xd==192 && dynamicSprite.yd==0){ //Case if left upper door
             beginLine=18;
         }
-        if (dynamicSprite.xd==384 && dynamicSprite.yd==0){//right upper door
+        if (dynamicSprite.xd==384 && dynamicSprite.yd==0){//Case if right upper door
             beginLine=21;
         }
-        //Do other case for door lower on the left, lower on the right, etc...
     }
 
     @Override
@@ -128,12 +131,15 @@ public class PhysicEngine implements Engine{
     }
 
     @Override
-    public void update() {
-        if(isPause){
+    public void update() { //Check all the interactions with different objects
+        if(isPause){ //Not run the physic if the character is dealing with a npc
             return;
         }
         for (MobSprite mob: mobSprite ){
             mob.isMobMovingPossible(environment);
+        }
+        for (SwordSprite sword : swordSprite){
+            sword.checkIfDamageMob(mobSprite);
         }
         for (DynamicSprite dynamicSprite : movingSpriteList) {
             dynamicSprite.moveIfPossible(environment);
@@ -146,8 +152,7 @@ public class PhysicEngine implements Engine{
             }
             dynamicSprite.checkIfFall(cliffSprite);
 
-            // Check if map change is triggered
-            if (dynamicSprite.mapChangeTriggered) {
+            if (dynamicSprite.mapChangeTriggered) { // Check if map change is triggered
                 Playground playground = new Playground(main.path);
                 setbeganLine(dynamicSprite);
                 String Map=playground.NextMap(main.path,beginLine);

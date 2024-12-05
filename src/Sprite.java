@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Sprite implements Displayable {
+public class Sprite implements Displayable { //Class for the Simple Sprite
     protected BufferedImage image;
     protected double x;
     protected double y;

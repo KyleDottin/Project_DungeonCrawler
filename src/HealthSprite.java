@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class HealthSprite extends DynamicSprite{
+public class HealthSprite extends DynamicSprite{ //Deals with the health of the character
     protected int MaxHealth;
     protected final int Health=2;
     protected int index=0;
@@ -32,13 +32,15 @@ public class HealthSprite extends DynamicSprite{
             dynamicSprite.index0=false;
         }
         if (dynamicSprite.getHit && (System.currentTimeMillis() - InvicibilityFrame)>=InvicibilityPeriod
-                || dynamicSprite.getHitMob && (System.currentTimeMillis() - InvicibilityFrame)>=InvicibilityPeriod) {
+                || dynamicSprite.getHitMob && (System.currentTimeMillis() - InvicibilityFrame)>=InvicibilityPeriod
+                || dynamicSprite.getFall && (System.currentTimeMillis() - InvicibilityFrame)>=InvicibilityPeriod) {
             InvicibilityFrame= System.currentTimeMillis();
             index += 1;
         }
 
         if (dynamicSprite.getHit && !((System.currentTimeMillis() - InvicibilityFrame)>=InvicibilityPeriod)
-        || dynamicSprite.getHitMob && !((System.currentTimeMillis() - InvicibilityFrame)>=InvicibilityPeriod)){
+        || dynamicSprite.getHitMob && !((System.currentTimeMillis() - InvicibilityFrame)>=InvicibilityPeriod)
+                || dynamicSprite.getFall && !((System.currentTimeMillis() - InvicibilityFrame)>=InvicibilityPeriod)){
             paintComponents(g);
         }
 

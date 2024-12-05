@@ -2,7 +2,7 @@ import java.awt.event.*;
 import java.awt.*;
 import javax.swing.JOptionPane;
 
-public class GameEngine implements Engine,KeyListener {
+public class GameEngine implements Engine,KeyListener { //Deals with the Game Specificity
     private final DynamicSprite hero;
     private final PhysicEngine P;
     private boolean isUp;
@@ -35,9 +35,10 @@ public class GameEngine implements Engine,KeyListener {
             case KeyEvent.VK_RIGHT:
                 isRight = true;
                 break;
-            case KeyEvent.VK_X:
+            case KeyEvent.VK_X: //Interact with npcs, objects or mobs
                 FairyDialog();
                 PnjDialog();
+                hero.isAttacking = true;
                 break;
             default:
                 break;
@@ -58,6 +59,9 @@ public class GameEngine implements Engine,KeyListener {
                 break;
             case KeyEvent.VK_RIGHT:
                 isRight = false;
+                break;
+            case KeyEvent.VK_X:
+                hero.isAttacking = false;
                 break;
             default:
                 break;
@@ -86,7 +90,7 @@ public class GameEngine implements Engine,KeyListener {
         }
     }
 
-    void FairyDialog(){
+    void FairyDialog(){ //Handles Fairy Dialog
         if(hero.fairyDialogTrigger){
             P.pause();
             int response = JOptionPane.showConfirmDialog(null,
@@ -103,7 +107,7 @@ public class GameEngine implements Engine,KeyListener {
         }
     }
 
-    void PnjDialog(){
+    void PnjDialog(){ // Handles Pnj Dialog
         if(hero.pnjDialogTrigger){
             P.pause();
             JOptionPane.showMessageDialog(null,

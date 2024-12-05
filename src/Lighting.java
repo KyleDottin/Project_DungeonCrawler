@@ -4,7 +4,7 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
-public class Lighting implements Displayable {
+public class Lighting implements Displayable { //Deals with the light effect
     String pathname;
     protected double x,y,width,height;
     protected DynamicSprite dynamicSprite;

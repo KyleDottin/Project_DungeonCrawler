@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public interface Displayable {
+public interface Displayable { //Interface to draw
     void Draw(Graphics g);
     void paintComponents(Graphics g);
 }
