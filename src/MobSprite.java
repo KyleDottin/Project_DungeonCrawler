@@ -56,9 +56,9 @@ public class MobSprite extends DynamicSprite { //Deals with the Simple pattern M
             int width1 = index * (int) width;
             int width2 = (index + 1) * (int) width;
 
-            Rectangle2D.Double Hitbox = HitboxMob();
-            g.setColor(Color.RED);
-            g.drawRect((int) Hitbox.x, (int) Hitbox.y, (int) Hitbox.width, (int) Hitbox.height);
+//            Rectangle2D.Double Hitbox = HitboxMob(); // To draw the hitbox
+//            g.setColor(Color.RED);
+//            g.drawRect((int) Hitbox.x, (int) Hitbox.y, (int) Hitbox.width, (int) Hitbox.height);
 
             g.drawImage(image, (int) x, (int) y, (int) (x + width), (int) (y + height),
                     width1, 0, width2, (int) height, null);

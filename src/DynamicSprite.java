@@ -95,10 +95,10 @@ class DynamicSprite extends SolidSprite{
             g.drawImage(image, (int) x, (int) y, (int) (x + width), (int) (y + height),
                     0, height1, width2, height2, null);
         }
-        g.setColor(Color.BLUE);
-        Rectangle2D.Double hitbox = Hitbox();
-        g.drawRect((int) hitbox.x, (int) hitbox.y,
-                (int) hitbox.width, (int) hitbox.height);
+//        g.setColor(Color.BLUE); // To draw the hitbox
+//        Rectangle2D.Double hitbox = Hitbox();
+//        g.drawRect((int) hitbox.x, (int) hitbox.y,
+//                (int) hitbox.width, (int) hitbox.height);
 
         if (pnjDialogTrigger || fairyDialogTrigger) {
             String Interact = "Interact";

@@ -44,9 +44,9 @@ public class SwordSprite extends DynamicSprite{
             g.drawImage(image, (int) x, (int) y, (int) (x + width), (int) (y + height),
                     width1, 0, width2, (int) height, null);
 
-            Rectangle2D.Double Hitbox= SwordHitbox();
-            g.setColor(Color.GREEN);
-            g.drawRect((int) Hitbox.x, (int) Hitbox.y, (int) Hitbox.width, (int) Hitbox.height);
+//            Rectangle2D.Double Hitbox= SwordHitbox(); // To draw the hitbox
+//            g.setColor(Color.GREEN);
+//            g.drawRect((int) Hitbox.x, (int) Hitbox.y, (int) Hitbox.width, (int) Hitbox.height);
 
         }
 
