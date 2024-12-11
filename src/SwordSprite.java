@@ -1,10 +1,15 @@
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class SwordSprite extends DynamicSprite{ //Deals with the Sword Sprite
     private final DynamicSprite dynamicSprite;
+    protected int swordWidth=45;
+    protected int swordHeight=10;
 
     public SwordSprite(BufferedImage image, double x, double y, double width, double height,DynamicSprite dynamicSprite) {
         super(image, x, y, width, height);
@@ -47,15 +52,15 @@ public class SwordSprite extends DynamicSprite{ //Deals with the Sword Sprite
         if(!dynamicSprite.isAttacking){
             return new Rectangle2D.Double(0,0,0,0);
         }
-        return switch (direction) {
-            case EAST -> new Rectangle2D.Double(this.x-5 + speed, this.y-15,
-                    dynamicSprite.width*1.2, dynamicSprite.height*1.4);
-            case WEST -> new Rectangle2D.Double(this.x -5- speed, this.y-15,
-                    dynamicSprite.width*1.2, dynamicSprite.height*1.4);
-            case SOUTH -> new Rectangle2D.Double(this.x-5, this.y -15+ speed,
-                    dynamicSprite.width*1.2, dynamicSprite.height*1.4);
-            case NORTH -> new Rectangle2D.Double(this.x-5, this.y -15- speed,
-                    dynamicSprite.width*1.2, dynamicSprite.height*1.4);
+        return switch (dynamicSprite.direction) {
+            case EAST -> new Rectangle2D.Double(this.x+25 + speed, this.y+25,
+                    swordWidth, swordHeight);
+            case WEST -> new Rectangle2D.Double(this.x-12- speed, this.y+40,
+                    swordWidth, swordHeight);
+            case SOUTH -> new Rectangle2D.Double(this.x+35, this.y +25+ speed,
+                    swordHeight, swordWidth);
+            case NORTH -> new Rectangle2D.Double(this.x+2, this.y- speed,
+                    swordHeight, swordWidth);
         };
     }
 

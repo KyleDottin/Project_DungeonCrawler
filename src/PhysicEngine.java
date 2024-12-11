@@ -11,6 +11,7 @@ public class PhysicEngine implements Engine{
     private final ArrayList<CliffSprite> cliffSprite;
     private final ArrayList<PnjSprite> pnjSprite;
     private final ArrayList<SwordSprite> swordSprite;
+    private final ArrayList<RupeeSprite> rupeeSprite;
     private final Main main;
     protected boolean isPause;
     protected int beginLine;
@@ -22,6 +23,7 @@ public class PhysicEngine implements Engine{
     public PhysicEngine(Main main) { //Deals with the Physic of the game
         movingSpriteList = new ArrayList<>();
         environment = new ArrayList<>();
+        rupeeSprite = new ArrayList<>();
         trapSprite = new ArrayList<>();
         doorSprite = new ArrayList<>();
         fairySprite = new ArrayList<>();
@@ -90,6 +92,12 @@ public class PhysicEngine implements Engine{
         }
     }
 
+    public void addToRupeeSpriteList(RupeeSprite sprite){
+        if (!rupeeSprite.contains(sprite)){
+            rupeeSprite.add(sprite);
+        }
+    }
+
     public void clearPhysicList(){ //Clear the list for the new  level
         movingSpriteList.clear();
         trapSprite.clear();
@@ -142,6 +150,7 @@ public class PhysicEngine implements Engine{
             sword.checkIfDamageMob(mobSprite);
         }
         for (DynamicSprite dynamicSprite : movingSpriteList) {
+            dynamicSprite.isTouchingRupee(rupeeSprite);
             dynamicSprite.moveIfPossible(environment);
             dynamicSprite.checkIfHitTrap(trapSprite);
             dynamicSprite.checkMap(doorSprite);

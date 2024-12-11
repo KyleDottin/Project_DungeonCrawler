@@ -20,6 +20,8 @@ public class Main {
     Lighting light;
     ButtonSprite button_x;
     SwordSprite sword;
+    HitSprite hit;
+    RupeeSprite rupee;
 
 
     public Main(String path) throws Exception { //Main of the program
@@ -85,6 +87,10 @@ public class Main {
                     hero.x, hero.y, 64, 100,hero);
             button_x = new ButtonSprite(ImageIO.read(new File("./img/X.png")),
                     16, 25, 40, 40);
+            hit= new HitSprite(ImageIO.read(new File("./img/hitSprite.png")),
+                    0,0,40,40,sword,hero);
+            rupee = new RupeeSprite(ImageIO.read(new File("./img/rupees.png")),
+                    0,0,21,64,blob,hero);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -103,8 +109,10 @@ public class Main {
         E.addTorenderList(fairy);
         E.addTorenderList(blob);
         E.addTorenderList(button_x);
+        E.addTorenderList(rupee);
         E.addTorenderList(hero);
         E.addTorenderList(sword);
+        E.addTorenderList(hit);
 
         for(Displayable d : E.HealthList){
             E.addTorenderList(d);
@@ -117,6 +125,7 @@ public class Main {
         P.addToPnjSpriteList(pnj01);
         P.addToFairySprite(fairy);
         P.addToMobSpriteList(blob);
+        P.addToRupeeSpriteList(rupee);
         P.setEnvironment(level.getSolidSpriteList());
 
         for (TrapSprite trap : level.getDamageObject()) {

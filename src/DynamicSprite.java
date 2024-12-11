@@ -32,6 +32,8 @@ class DynamicSprite extends SolidSprite{ //Deals with all the interactions with 
     protected boolean damageMob;
     protected boolean getFall;
     protected boolean mobDead;
+    protected boolean touchRupee;
+    protected boolean beenRecover;
 
     public DynamicSprite(BufferedImage image, double x, double y, double width, double height) {
         super(image, x, y, width, height);
@@ -267,6 +269,20 @@ class DynamicSprite extends SolidSprite{ //Deals with all the interactions with 
         }
         fairyDialogTrigger=false;
 
+    }
+
+    public void isTouchingRupee(ArrayList<RupeeSprite> rupees) { //Check if character touch rupee
+        Rectangle2D.Double hitbox = Hitbox();
+        for (Sprite E : rupees) {
+                Rectangle2D.Double elementHitBox = new Rectangle2D.Double(
+                        E.x, E.y, E.width, E.height);
+                if (hitbox.intersects(elementHitBox)) {
+                    touchRupee=true;
+                    beenRecover=true;
+                    return;
+                }
+        }
+        touchRupee=false;
     }
 
 

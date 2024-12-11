@@ -11,13 +11,15 @@ public class MobSprite extends DynamicSprite { //Deals with the Simple pattern M
     private DynamicSprite dynamicSprite;
     private int timeBetweenFrame=100;
     private int spriteSheetNumberofColumn=12;
-    private int mobSpeed=2;
+    protected int mobSpeed=2;
     protected Direction mobDirection=Direction.EAST;
     private int healthBar=2;
     private int InvicibilityPeriod=1200;
     private long InvicibilityFrame;
-    private boolean differentHealth;
-    private int recoilDamage=30;
+    protected boolean differentHealth;
+    protected int recoilDamage=50;
+    private int howMuchPixel=5;
+    private boolean stopRecoil;
 
 
     public MobSprite(BufferedImage image, double x, double y, double width, double height, String pathname, DynamicSprite dynamicSprite) {
@@ -37,6 +39,16 @@ public class MobSprite extends DynamicSprite { //Deals with the Simple pattern M
             dynamicSprite.mobDead=false;
             int index = (int) (System.currentTimeMillis() / timeBetweenFrame % spriteSheetNumberofColumn);
 
+            if(differentHealth) { // Recoil damage
+                Slide();
+                index=3;
+                recoilDamage-=howMuchPixel;
+            }
+            if(recoilDamage==0 || stopRecoil) {
+                differentHealth=false;
+                recoilDamage=30;
+            }
+
             int width1 = index * (int) width;
             int width2 = (index + 1) * (int) width;
 
@@ -46,23 +58,15 @@ public class MobSprite extends DynamicSprite { //Deals with the Simple pattern M
 
             g.drawImage(image, (int) x, (int) y, (int) (x + width), (int) (y + height),
                     width1, 0, width2, (int) height, null);
-        }else {
-            dynamicSprite.mobDead = true;
-        }
+
             switch (mobDirection) {
                 case EAST -> this.x = x + mobSpeed;
                 case WEST -> this.x = x - mobSpeed;
                 case NORTH -> this.y = y - mobSpeed;
                 case SOUTH -> this.y = y + mobSpeed;
             }
-        if(differentHealth){ // Recoil damage
-            switch (dynamicSprite.direction) {
-                case EAST -> this.x = x + recoilDamage + mobSpeed;
-                case WEST -> this.x = x - recoilDamage - mobSpeed;
-                case NORTH -> this.y = y - recoilDamage - mobSpeed;
-                case SOUTH -> this.y = y + recoilDamage + mobSpeed;
-            }
-            differentHealth=false;
+        }else {
+            dynamicSprite.mobDead = true;
         }
     }
 
@@ -86,6 +90,7 @@ public class MobSprite extends DynamicSprite { //Deals with the Simple pattern M
                     Rectangle2D.Double elementHitBox = new Rectangle2D.Double(
                             E.x, E.y, E.width, E.height);
                     if (hitbox.intersects(elementHitBox)) {
+                        stopRecoil=true; //Stop the recoil if the mob touch a Solid Sprite
                         Random rand = new Random();
                         Direction newDirection = Direction.values()[rand.nextInt(Direction.values().length)];
                         while (newDirection == mobDirection) {
@@ -96,5 +101,14 @@ public class MobSprite extends DynamicSprite { //Deals with the Simple pattern M
                     }
                 }
             }
+    }
+
+    public void Slide() { //Make the mob slide if we attack him
+        switch (dynamicSprite.direction) {
+            case EAST -> this.x = x + howMuchPixel + mobSpeed;
+            case WEST -> this.x = x - howMuchPixel - mobSpeed;
+            case NORTH -> this.y = y - howMuchPixel - mobSpeed;
+            case SOUTH -> this.y = y + howMuchPixel + mobSpeed;
+        }
     }
 }
