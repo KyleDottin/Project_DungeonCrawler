@@ -1,6 +1,10 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * ButtonSprite visually represents the button or key the player needs to press, providing clear guidance.
+ */
+
 public class ButtonSprite extends Sprite {
 
 

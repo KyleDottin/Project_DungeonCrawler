@@ -2,7 +2,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class HealthSprite extends DynamicSprite{ //Deals with the health of the character
+/**
+ * HealthSprite is the class that deals with the drawing of the health of the character.
+ */
+
+public class HealthSprite extends DynamicSprite{
     protected int MaxHealth;
     protected final int Health=2;
     protected int index=0;
@@ -40,7 +44,7 @@ public class HealthSprite extends DynamicSprite{ //Deals with the health of the 
 
         if (dynamicSprite.getHit && !((System.currentTimeMillis() - InvicibilityFrame)>=InvicibilityPeriod)
         || dynamicSprite.getHitMob && !((System.currentTimeMillis() - InvicibilityFrame)>=InvicibilityPeriod)
-                || dynamicSprite.getFall && !((System.currentTimeMillis() - InvicibilityFrame)>=InvicibilityPeriod)){
+                || dynamicSprite.getFall && !((System.currentTimeMillis() - InvicibilityFrame)>=InvicibilityPeriod)){ //Use the paintcomponents method if the character is taking damage
             paintComponents(g);
         }
 
@@ -52,7 +56,7 @@ public class HealthSprite extends DynamicSprite{ //Deals with the health of the 
         int width_no2 = 3 * (int) width;
         int height2 = (attitude + 1) * (int) height;
 
-        if (firstTime) {
+        if (firstTime) { //Print the full heart
             index=0;
             MaxHealth=0;
             g.drawImage(image, (int) x / 8, (int) y / 8, (int) (x + width) / 8, (int) (y + height) / 8,
@@ -63,7 +67,7 @@ public class HealthSprite extends DynamicSprite{ //Deals with the health of the 
                     0, height1, width2, height2, null);
             firstTime=false;
         }
-        if(MaxHealth==0) {
+        if(MaxHealth==0) { //If no heart is empty
             g.drawImage(image, (int) (32*x / 8), (int) y / 8, (int) (32*x + width) / 8, (int) (y + height) / 8,
                     width1, height1, width2, height2, null);
             g.drawImage(image, (int) x / 8, (int) y / 8, (int) (x + width) / 8, (int) (y + height) / 8,
@@ -71,7 +75,7 @@ public class HealthSprite extends DynamicSprite{ //Deals with the health of the 
             g.drawImage(image, (int) (16 * x / 8), (int) y / 8, (int) (16 * x + width) / 8, (int) (y + height) / 8,
                     0, height1, (int) width, height2, null);
         }
-        if(MaxHealth==1){
+        if(MaxHealth==1){ //If the first heart is empty
             g.drawImage(image, (int) (16*x / 8), (int) y / 8, (int) (16*x + width) / 8, (int) (y + height) / 8,
                     width1, height1, width2, height2, null);
             g.drawImage(image, (int) x / 8, (int) y / 8, (int) (x + width) / 8, (int) (y + height) / 8,
@@ -79,7 +83,7 @@ public class HealthSprite extends DynamicSprite{ //Deals with the health of the 
             g.drawImage(image, (int) (32 * x / 8), (int) y / 8, (int) (32 * x + width) / 8, (int) (y + height) / 8,
                     width_no1, height1, width_no2, height2, null);
         }
-        if(MaxHealth==2){
+        if(MaxHealth==2){ //If the second heart is empty
             g.drawImage(image, (int) x/8, (int) y / 8, (int) (x + width) / 8, (int) (y + height) / 8,
                     width1, height1, width2, height2, null);
             g.drawImage(image, (int) (16*x / 8), (int) y / 8, (int) (16*x + width) / 8, (int) (y + height) / 8,
@@ -88,11 +92,11 @@ public class HealthSprite extends DynamicSprite{ //Deals with the health of the 
                     width_no1, height1, width_no2, height2, null);
         }
 
-        if (index==Health) {
+        if (index==Health) { //If a heart is empty, reset the index
             MaxHealth+=1;
             index=0;
 
-            if (MaxHealth==3) {
+            if (MaxHealth==3) { //If there is no heart left
                 frame.dispose();
                 gameOverScreen.LaunchGameOverScreen();
             }

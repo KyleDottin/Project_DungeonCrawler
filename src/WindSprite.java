@@ -1,7 +1,12 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class WindSprite extends DynamicSprite { //class for the wind sprite
+/**
+ * WindSprite is the class used to draw and implements the wind in the right map. Here, the map is
+ * WindyMap.
+ */
+
+public class WindSprite extends DynamicSprite {
     private final String pathname;
     protected DynamicSprite dynamicSprite;
     private int timeBetweenFrame=100;

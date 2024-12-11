@@ -3,7 +3,11 @@
     import java.util.ArrayList;
     import java.util.List;
 
-    public class RenderEngine extends JPanel implements Engine { //Deals with the Render Engine
+    /**
+     * RenderEngine is the class that deals with the rendering of the game.
+     */
+
+    public class RenderEngine extends JPanel implements Engine {
         protected List<Displayable> renderList;
         protected List<Displayable> HealthList;
 

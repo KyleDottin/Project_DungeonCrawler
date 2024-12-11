@@ -7,6 +7,10 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * StartScreen is the class that launch the start screen.
+ */
+
 public class StartScreen extends JPanel implements KeyListener, Engine { //Deals with the start screen
 
     JFrame frame;

@@ -1,6 +1,10 @@
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * PhysicEngine deals with the physic of the game.
+ */
+
 public class PhysicEngine implements Engine{
     private final ArrayList<DynamicSprite> movingSpriteList;
     private ArrayList <Sprite> environment;
@@ -20,7 +24,7 @@ public class PhysicEngine implements Engine{
         isPause=true;
     }
 
-    public PhysicEngine(Main main) { //Deals with the Physic of the game
+    public PhysicEngine(Main main) {
         movingSpriteList = new ArrayList<>();
         environment = new ArrayList<>();
         rupeeSprite = new ArrayList<>();

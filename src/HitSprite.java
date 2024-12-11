@@ -2,6 +2,10 @@ import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
+/**
+ * HitSprite handles the drawing of the hitting sprite.
+ */
+
 public class HitSprite extends Sprite {
     private int spriteSheetNumberofColumn=8;
     private int width=40;

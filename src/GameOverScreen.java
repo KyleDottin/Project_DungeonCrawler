@@ -7,7 +7,11 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class GameOverScreen extends JPanel implements KeyListener,Engine { //Deals with the Game Over Screen
+/**
+ * GameOverScreen is the class that launch the game over screen.
+ */
+
+public class GameOverScreen extends JPanel implements KeyListener,Engine {
 
     JFrame frame;
     protected BufferedImage GameOverTitle;

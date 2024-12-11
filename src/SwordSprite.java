@@ -6,7 +6,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class SwordSprite extends DynamicSprite{ //Deals with the Sword Sprite
+/**
+ * SwordSprite deals with all the interactions with the sword.
+ */
+
+public class SwordSprite extends DynamicSprite{
     private final DynamicSprite dynamicSprite;
     protected int swordWidth=45;
     protected int swordHeight=10;

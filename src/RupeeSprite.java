@@ -3,7 +3,11 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-public class RupeeSprite extends DynamicSprite { //Class for the Fairy Sprite
+/**
+ * RupeeSprite is the class that deals with the drawing of the rupees.
+ */
+
+public class RupeeSprite extends DynamicSprite {
     private DynamicSprite dynamicSprite;
     private MobSprite mobSprite;
     private int spriteSheetNumberofColumn=3;

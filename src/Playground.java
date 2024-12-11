@@ -8,13 +8,18 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Playground deals with the understanding of the txt file to build the levels.
+ * It associated letters with sprites.
+ */
+
 public class Playground {
     protected ArrayList<Sprite> environment = new ArrayList<>();
     protected ArrayList<TrapSprite> Damage = new ArrayList<>();
     protected ArrayList<DoorSprite> Door = new ArrayList<>();
     protected ArrayList<CliffSprite> Cliff = new ArrayList<>();
 
-    public Playground(String pathName) { //Deals with the understanding of the txt file to build the levels
+    public Playground(String pathName) {
         try {
             // Load images
             final BufferedImage imageTree = ImageIO.read(new File("./img/tree.png"));

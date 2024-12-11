@@ -2,6 +2,11 @@ import java.awt.event.*;
 import java.awt.*;
 import javax.swing.JOptionPane;
 
+/**
+ * GameEngine handles all the internal game specificity such as the spotting of the key pressed
+ * or the dialog.
+ */
+
 public class GameEngine implements Engine,KeyListener { //Deals with the Game Specificity
     private final DynamicSprite hero;
     private final PhysicEngine P;

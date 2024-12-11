@@ -1,6 +1,10 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * FairySprite is the class that handles all the interactions of the fairy.
+ */
+
 public class FairySprite extends DynamicSprite { //Class for the Fairy Sprite
     private String pathname;
     private int timeBetweenFrame=100;

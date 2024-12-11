@@ -1,7 +1,11 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class CliffSprite extends DynamicSprite { //Class for the CliffSprite
+/**
+ * CliffSprite is used for PhysicEngine to know what does a cliff is.
+ */
+
+public class CliffSprite extends DynamicSprite {
 
 
     public CliffSprite(BufferedImage image, double x, double y, double width, double height) {

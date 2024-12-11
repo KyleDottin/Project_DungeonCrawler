@@ -6,6 +6,10 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * MobSprite handles with all the interactions of the simple pattern mob.
+ */
+
 public class MobSprite extends DynamicSprite { //Deals with the Simple pattern Mobs Sprite
     private String pathname;
     private DynamicSprite dynamicSprite;

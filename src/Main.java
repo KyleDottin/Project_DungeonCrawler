@@ -4,6 +4,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Main is the class where the code begins and is organized.
+ */
+
 public class Main {
 
     JFrame frame;
@@ -81,7 +85,7 @@ public class Main {
             wind = new WindSprite(ImageIO.read(new File("./img/wind.png")),
                     32, 64, 512, 512,this.path,hero);
             pnj01 = new PnjSprite(ImageIO.read(new File("./img/pnj01Sprite.png")),
-                    437, 192, 80, 80,this.path, hero);
+                    437, 192, 80, 80,this.path);
             light = new Lighting(0, 0, 576, 576,this.path, hero);
             sword = new SwordSprite(ImageIO.read(new File("./img/SwordSprite.png")),
                     hero.x, hero.y, 64, 100,hero);

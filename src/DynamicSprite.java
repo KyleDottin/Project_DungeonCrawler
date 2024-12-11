@@ -6,7 +6,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-class DynamicSprite extends SolidSprite{ //Deals with all the interactions with the character
+/**
+ * DynamicSprite si the class that deals with all the interactions the character has.
+ */
+
+class DynamicSprite extends SolidSprite{
     protected boolean isWalking;
     protected double speed=7;
     protected final int spriteSheetNumberofColumn=10;
